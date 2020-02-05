@@ -6,12 +6,16 @@
 MCU   ?= atmega328p
 F_CPU ?= 1000000UL   # 1MHz
 BAUD  ?= 9600UL
+PROGRAMMER_TYPE ?= usbasp
+PROGRAMMER_ARGS ?=
 
 ##########------------------------------------------------------##########
 
 CC = avr-gcc
 OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
+AVRSIZE = avr-size
+AVRDUDE = avrdude
 
 ##########------------------------------------------------------##########
 
@@ -49,7 +53,7 @@ $(TARGET).elf: $(OBJECTS)
 
 
 
-.PHONY: all debug disassemble clean
+.PHONY: all debug disassemble flash size erase clean
 
 all: $(TARGET).hex
 
@@ -63,6 +67,17 @@ debug:
 # This creates approximate assembly-language equivalent of your code.
 # Useful for debugging time-sensitive bits, or making sure the compiler does what you want.
 disassemble: $(TARGET).lst
+
+flash: $(TARGET).hex
+	$(AVRDUDE) -c $(PROGRAMMER_TYPE) -p $(MCU) $(PROGRAMMER_ARGS) -U flash:w:$<
+
+# Show how big the resulting program is
+size:  $(TARGET).elf
+	$(AVRSIZE) -C --mcu=$(MCU) $(TARGET).elf
+
+# Erase the AVR chip
+erase:
+	$(AVRDUDE) -c $(PROGRAMMER_TYPE) -p $(MCU) $(PROGRAMMER_ARGS) -e
 
 clean:
 	rm -f *.elf *.hex *.obj *.o *.d *.eep *.lst \
