@@ -47,6 +47,7 @@ void TM1637_turnOff(void);
 void TM1637_setBrightness(uint8_t brightness);
 void TM1637_turnOnAndSetBrightness(uint8_t brightness);
 void TM1637_setSegments(const uint8_t segments[], uint8_t length, uint8_t pos);
+#define TM1637_setSegment(segment, pos)  TM1637_setSegments((uint8_t[]) { (segment) }, 1, (pos))
 void TM1637_clear(void);
 
 uint8_t TM1637_displayDecNumber(int16_t num);
