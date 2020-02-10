@@ -40,17 +40,26 @@ extern const uint8_t TM1637_digitToSegment[];
 uint8_t TM1637_brightness_reg;
 
 
+/** Initialize the library and prepare TM1637 chip for receiving display data **/
 void TM1637_init(void);
+/** Turn the display on or off **/
 void TM1637_turnOnOff(uint8_t on);
 void TM1637_turnOn(void);
 void TM1637_turnOff(void);
+/** Set the display brightness (brightness range: 0-7) **/
 void TM1637_setBrightness(uint8_t brightness);
+/** Turn the display on and set its brightness (brightness range: 0-7) in a more performant
+ *  way than calling TM1637_turnOn and TM1637_setBrightness subsequently **/
 void TM1637_turnOnAndSetBrightness(uint8_t brightness);
+/** Display raw segments data, starting at given digit/position **/
 void TM1637_setSegments(const uint8_t segments[], uint8_t length, uint8_t pos);
 #define TM1637_setSegment(segment, pos)  TM1637_setSegments((uint8_t[]) { (segment) }, 1, (pos))
+/** Clear the display - turn off all segments **/
 void TM1637_clear(void);
 
+/** Display argument as decimal number **/
 uint8_t TM1637_displayDecNumber(int16_t num);
+/** Display hexadecimal digits, starting at given digit/position **/
 void    TM1637_displayDigits(const uint8_t digits[], uint8_t length, uint8_t pos);
 
 #endif /* _TM1637_H_ */
