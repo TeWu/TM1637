@@ -118,19 +118,24 @@ void TM1637_clear(void) {
 }
 
 
-uint8_t TM1637_displayDecNumber(int16_t num) {
+uint8_t TM1637_displayNumber(int16_t num, uint8_t base) {
   if (num == 0) {
     TM1637_setSegments((uint8_t[]) { TM1637_SPAT_BLANK, TM1637_SPAT_BLANK, TM1637_SPAT_BLANK, TM1637_SPAT_0 }, 4, 0);
     return 0;
   }
-  if (num <= -1000 || num >= 10000) return 1;
+  uint16_t pos2 = base * base;
+  uint16_t pos3 = pos2 * base;
+  uint16_t pos4 = pos3 * base;
+  // Check if number fits in 4 digits, or 3 digits + minus sign
+  if (num <= -pos3 || num >= pos4) return 1;
+
   int16_t abs_num = num < 0 ? -num : num;
   // Extract digits from num
   uint8_t data[4] = {
-    (abs_num / 1000) % 10,
-    (abs_num / 100)  % 10,
-    (abs_num / 10)   % 10,
-     abs_num         % 10
+    (abs_num / pos3) % base,
+    (abs_num / pos2) % base,
+    (abs_num / base) % base,
+     abs_num         % base
   };
   // Convert digits to segments
   uint8_t started = 0;
