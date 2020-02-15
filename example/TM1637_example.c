@@ -42,6 +42,18 @@ int main(void) {
     // Display "789A" - Adds "A" at position 3
     TM1637_setSegment(TM1637_SPAT_A, 3);
     wait();
+    // Display "1101"
+    TM1637_displayBinNumber(13);
+    wait();
+    // Display " 4d2"
+    TM1637_displayHexNumber(1234);
+    wait();
+    // Display "2322"
+    TM1637_displayOctNumber(1234);
+    wait();
+    // Display " 86A"
+    TM1637_displayNumber(1234, 12);  // Display 1234 as base 12 number
+    wait();
     // Show all 8 different brightness levels
     TM1637_setSegments((uint8_t[]) { TM1637_SPAT_FULL, TM1637_SPAT_FULL, TM1637_SPAT_FULL }, 3, 1);
     for (uint8_t i = 0; i < 8; i++) {
