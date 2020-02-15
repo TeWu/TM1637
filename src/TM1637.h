@@ -58,8 +58,10 @@ void TM1637_setSegments(const uint8_t segments[], uint8_t length, uint8_t pos);
 /** Clear the display - turn off all segments **/
 void TM1637_clear(void);
 
-/** Display a number in a given numerical system **/
-uint8_t TM1637_displayNumber(int16_t num, uint8_t base);
+/** Display a number in a given numerical system (supported bases: 2-16) **/
+uint8_t TM1637_displayNumber(int32_t num, uint8_t base);
+#define TM1637_displayBinNumber(num) TM1637_displayNumber(num,  2)
+#define TM1637_displayOctNumber(num) TM1637_displayNumber(num,  8)
 #define TM1637_displayDecNumber(num) TM1637_displayNumber(num, 10)
 #define TM1637_displayHexNumber(num) TM1637_displayNumber(num, 16)
 /** Display hexadecimal digits, starting at given digit/position **/
