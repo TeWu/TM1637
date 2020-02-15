@@ -8,7 +8,8 @@
 #include "segments_patterns.h"
 
 
-#define TM1637_DIGITS_COUNT  4
+#define TM1637_DIGITS_COUNT    4
+#define TM1637_MAX_BRIGHTNESS  7
 
 #define TM1637_CMD_SETUP           0b01000000
 #define TM1637_CMD_SET_DATA        0b11000000

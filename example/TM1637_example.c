@@ -3,7 +3,6 @@
 
 
 #define WAIT_TIME 3000  // in milliseconds
-#define DISPLAY_BRIGHTNESS 7
 #define STARTUP_MESSAGE_SEGMENTS ((uint8_t[]) { TM1637_SPAT_BLANK, TM1637_SPAT_H, TM1637_SPAT_I, TM1637_SPAT_BLANK })
 
 
@@ -18,7 +17,7 @@ static inline void w(void) {
 int main(void) {
   TM1637_init();
   TM1637_setSegments(STARTUP_MESSAGE_SEGMENTS, TM1637_DIGITS_COUNT, 0);
-  TM1637_turnOnAndSetBrightness(DISPLAY_BRIGHTNESS);
+  TM1637_turnOnAndSetBrightness(TM1637_MAX_BRIGHTNESS);
   wait();
 
   while (1) {
