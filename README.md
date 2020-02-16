@@ -32,7 +32,7 @@ Modules based on TM1637 chip provide two signal pins (`CLK` and `DIO`) and two p
 
 **IMPORTANT**: `CLK` and `DIO` pins must be pulled up to `VCC` by EXTERNAL pullup resistors. This library CAN NOT work without those pullup resistors! Developed and tested with 10k pullup resistors at 3.3V VCC.
 
-Before using the library adjust pin configuration in `src/pin_config.h` file. Note that `CLK` and `DIO` pins must be on the same port.
+Before using the library adjust pin configuration in [`src/pin_config.h`][2] file. Note that `CLK` and `DIO` pins must be on the same port.
 
 
 Usage
@@ -53,10 +53,13 @@ int main(void) {
 }
 ```
 
-For more complete example, that is demonstrating operation of all the library's functions, please refer to the `example/TM1637_example.c` file.
+For more complete example, that is demonstrating operation of all the library's functions, please refer to the [`example/TM1637_example.c`][3] file.
 
-For description of all the library's functions see `src/TM1637.h` file.
+For description of all the library's functions see [`src/TM1637.h`][4] file.
 
 
 
 [1]: https://www.mcielectronics.cl/website_MCI/static/documents/Datasheet_TM1637.pdf
+[2]: https://github.com/TeWu/TM1637/blob/master/src/pin_config.h
+[3]: https://github.com/TeWu/TM1637/blob/master/example/TM1637_example.c
+[4]: https://github.com/TeWu/TM1637/blob/master/src/TM1637.h#L50
