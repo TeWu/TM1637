@@ -1,7 +1,7 @@
 AVR library for TM1637 (LED Display Driver)
 =======
 This is a lightweight AVR library for driving 7-segment display modules based on [TM1637][1] chip.
-TM1637 chip uses custom 2-wire communication protocol, which is similar to I2C, but does not conform to I2C standard.
+The TM1637 chip uses custom 2-wire communication protocol, which is similar to I2C, but does not conform to I2C standard.
 This library provides software implementation of this protocol.
 
 ![TM1637 chip](https://i.imgur.com/lFW3axJ.jpg)

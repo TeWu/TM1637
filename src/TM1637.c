@@ -52,7 +52,7 @@ static inline uint8_t TM1637_writeByte(uint8_t data) {
   TM1637_SET_CLK_HIGH_AND_INPUT;
   TM1637_QUARTER_CYCLE_DELAY;
   uint8_t ack = TM1637_READ_DIO;
-  if (ack == 0)                     // Not strictly necessary, but a it's a good idea
+  if (ack == 0)                     // Not strictly necessary, but it's a good idea
     TM1637_SET_DIO_LOW_AND_OUTPUT;  // to avoid unnecessary voltage changes on DIO when possible
   TM1637_QUARTER_CYCLE_DELAY;
 
